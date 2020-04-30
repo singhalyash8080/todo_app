@@ -51,7 +51,10 @@ app.post('/',(req,res,next)=>{
 
     const item = new Item({
         _id: new mongoose.Types.ObjectId(),
-        name: req.body.name
+        name: req.body.name,
+        created_timestamp: req.body.created_timestamp,
+        due_timestamp: req.body.due_timestamp,
+        completed: req.body.completed
     });
 
     item
