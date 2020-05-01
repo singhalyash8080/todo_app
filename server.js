@@ -1,8 +1,11 @@
-const http = require('http');
-const app = require('./app');
+const app = require('./app')
+const http = require('http')
+const logger = require('./logging/logger')
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080
 
-const server = http.createServer(app);
+const server = http.createServer(app)
 
-server.listen(port);
+server.listen(PORT, () => {
+  logger.info(`started server on port ${PORT}`)
+})
