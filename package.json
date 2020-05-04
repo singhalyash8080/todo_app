@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "test": "standard && nyc --reporter=lcov mocha tests/*",
+    "test": "mocha",
     "lint": "standard --fix",
     "start": "nodemon server.js",
     "coverage": "codecov"
@@ -20,7 +20,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "codecov": "^3.6.5",
-    "mocha": "^7.1.1",
+    "mocha": "^7.1.2",
     "nodemon": "^2.0.3",
     "nyc": "^15.0.0",
     "standard": "^14.3.3"

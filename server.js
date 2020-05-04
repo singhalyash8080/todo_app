@@ -9,3 +9,6 @@ const server = http.createServer(app)
 server.listen(PORT, () => {
   logger.info(`started server on port ${PORT}`)
 })
+
+module.exports = server
+
