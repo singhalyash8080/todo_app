@@ -7,6 +7,8 @@ router.get('/',ItemController.item_get_all);
 
 router.get('/by_id/:itemId',ItemController.item_get_id);
 
+router.get('/by_location',ItemController.item_by_location);
+
 router.post('/',ItemController.item_post);
 
 router.delete('/by_id/:itemId',ItemController.item_delete);

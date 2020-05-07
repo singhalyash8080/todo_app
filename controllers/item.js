@@ -31,6 +31,34 @@ exports.item_get_id = (req,res,next)=>{
         });
 }
 
+exports.item_by_location = (req,res,next)=>{
+    Item.find({
+        geometry: {
+            $geoIntersects: {
+                $geometry: {
+                    type: "Polygon",
+                    coordinates: [[
+                        [-109, 41],
+                        ...[-102, 41],
+                        ...[-102, 37],
+                        ...[-109, 37],
+                        ...[-109, 41]
+                    ]]
+                }
+            }
+        }
+    })
+        .exec()
+        .then(doc => {
+            console.log(doc);
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: err });
+        });;
+}
+
 
 exports.item_post = (req,res,next)=>{
 
@@ -39,7 +67,8 @@ exports.item_post = (req,res,next)=>{
         name: req.body.name,
         created_timestamp: req.body.created_timestamp,
         due_timestamp: req.body.due_timestamp,
-        completed: req.body.completed
+        completed: req.body.completed,
+        geometry: req.body.geometry
     });
 
     item
