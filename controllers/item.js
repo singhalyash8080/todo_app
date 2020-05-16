@@ -100,6 +100,20 @@ exports.item_delete = (req,res,next)=>{
     });
 }
 
+exports.item_delete_all = (req,res,next)=>{
+    Item.remove({})
+    .exec()
+    .then(result => {
+        res.status(200).json(result);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        });
+    });
+}
+
 exports.item_patch = (req,res,next)=>{
     const id = req.params.itemId;
     const updateOps={};

@@ -1,14 +1,11 @@
-### To run the server
+### Todo-App
+This is a todo-app REST Api.
+
+## To run the server
 
 ```
 $ npm start
 ```
-
-## For Logging
-
-- `logger.js` exports a winston object which we use for logging. You should modify logger.js to customize your logging configuration.
-- `morgan.js` exports a pre-configured morgan object to write logs using a stream to winston. It is used to intercept http requests and log the request and response details.
-  For more details visit the official page for [morgan](https://www.npmjs.com/package/morgan).
 
 ## Routes
 

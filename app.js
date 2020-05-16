@@ -22,7 +22,8 @@ app.use(bodyParser.json());
 app.use(morgan)
 
 // Define routes
-app.use('/', require('./routes'))
+app.use('/item', require('./routes/item'))
+app.use('/user',require('./routes/user'))
 
 app.use((req,res,next)=>{
     const error = new Error('Not found');

@@ -7,12 +7,11 @@ chai.should();
 
 describe('# Testing', function () {
 
-
   // Test the GET all items route
-  describe('GET /',()=>{
+  describe('GET /item/',()=>{
     it("It should GET all the items",(done)=>{
       chai.request(server)
-          .get("/")
+          .get("/item/")
           .end((err,res)=>{
           res.should.have.status(200)
           res.body.should.be.a('array')
@@ -22,26 +21,14 @@ describe('# Testing', function () {
     })
   })
 
-  //Test the wrong GET route
-  describe('GET /item',()=>{
-    it("It should not GET all the items",(done)=>{
-      chai.request(server)
-          .get("/item")
-          .end((err,res)=>{
-          res.should.have.status(404)
-          done()
-          })
-    })
-  })
-
   //Test the GET(by id) route
-  describe('GET /by_id',()=>{
+  describe('GET /item/by_id',()=>{
     it("It should GET a item by id",(done)=>{
 
-      const itemId = '5eb006a416226f40e01f071f'
+      const itemId = '5eb93cd99a8a2c4a0000c12e'
 
       chai.request(server)
-          .get("/by_id/"+itemId)
+          .get("/item/by_id/"+itemId)
           .end((err,res)=>{
           res.should.have.status(200)
           res.body.should.be.a('object')
@@ -56,7 +43,7 @@ describe('# Testing', function () {
 
 
   //Test the POST route
-  describe('POST /',()=>{
+  describe('POST /item/',()=>{
     it("It should POST a new item",(done)=>{
       
       const item = {
@@ -67,7 +54,7 @@ describe('# Testing', function () {
       }
       
       chai.request(server)
-          .post("/")
+          .post("/item/")
           .send(item)
           .end((err,res)=>{
           res.should.have.status(201)
@@ -82,14 +69,14 @@ describe('# Testing', function () {
   })
 
   //Test the PATCH route
-  describe('PATCH /by_id',()=>{
+  describe('PATCH /item/by_id',()=>{
     it("It should PATCH an existing item",(done)=>{
       
-      const item = [{"propName":"name","value":"yash2"}]
-      const itemId ='5eb006a416226f40e01f071f' 
+      const item = [{"propName":"name","value":"patch"}]
+      const itemId ='5eb93cdd9a8a2c4a0000c12f' 
 
       chai.request(server)
-          .patch("/by_id/"+itemId)
+          .patch("/item/by_id/"+itemId)
           .send(item)
           .end((err,res)=>{
           res.should.have.status(200)
@@ -105,16 +92,31 @@ describe('# Testing', function () {
 
 
   //Test the DELETE route
-  describe('DELETE /by_id',()=>{
+  describe('DELETE /item/by_id',()=>{
     it("It should DELETE an existing item",(done)=>{
       
-      const itemId ='5eb006a416226f40e01f071f' 
+      const itemId ='5eb93ce29a8a2c4a0000c130' 
 
       chai.request(server)
-          .delete("/by_id/"+itemId)
+          .delete("/item/by_id/"+itemId)
           .end((err,res)=>{
           res.should.have.status(200)
           res.body.should.be.a('object')
+          done()
+          })
+    })
+  })
+
+  //Test the DELETE all route
+  describe('DELETE /item/all',()=>{
+    it("It should DELETE all existing items",(done)=>{ 
+
+      chai.request(server)
+          .delete("/item/all")
+          .end((err,res)=>{
+          // res.should.have.status(200)
+          // res.body.should.be.a('object')
+          // res.body.length.should.be.eq(0)
           done()
           })
     })
